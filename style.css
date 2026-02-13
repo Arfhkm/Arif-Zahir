@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💌 Secret Love Letters ☁️</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Gaegu:wght@400;700&family=Reenie+Beanie&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== SCRAPBOOK VALENTINE + FIXED HOMEPAGE ===== */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+    --valentine-red: #c41e3a;
+    --heart-pink: #ff1493;
+    --rose-gold: #ffd1dc;
+    --cream: #fff5f7;
+    --strawberry: #ff69b4;
+}
+
+* { margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: 
+        linear-gradient(rgba(255,105,180,.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,105,180,.1) 1px, transparent 1px),
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,.9) 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, rgba(255,248,220,.8) 1px, transparent 1px),
+        linear-gradient(135deg, #fff8f0 0%, #ffeef2 50%, #fff5f7 100%);
+    background-size: 35px 35px, 35px 35px, 80px 80px, 60px 60px, 100% 100%;
+    color: var(--valentine-red);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    padding: 40px 20px;
+}
+
+/* GENTLE SCRAPBOOK FLOAT */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+        radial-gradient(ellipse 15px 10px at 15% 15%, rgba(255,182,193,.2) 1px, transparent 1px),
+        radial-gradient(ellipse 12px 8px at 85% 85%, rgba(255,105,180,.15) 1px, transparent 1px);
+    background-size: 120px 120px, 100px 100px;
+    animation: scrapbookFloat 25s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes scrapbookFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(3rem, 8vw, 5rem);
+    background: linear-gradient(45deg, var(--valentine-red), var(--heart-pink), var(--strawberry));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 8px rgba(255,255,255,0.9);
+}
+
+/* SCRAPBOOK GRID */
+.notes-row { 
+    display: flex; 
+    justify-content: center; 
+    gap: 40px; 
+    margin: 40px 0; 
+    flex-wrap: wrap; 
+}
+
+/* POLAROID / ID CARD STYLE */
+.love-box {
+    width: 300px;
+    background: white;
+    padding: 15px 15px 50px 15px;
+    box-shadow: 8px 8px 0 var(--strawberry);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 4px solid var(--heart-pink);
+    text-align: left;
+}
+
+.love-box:nth-child(odd) { transform: rotate(-3deg); }
+.love-box:nth-child(even) { transform: rotate(3deg); }
+
+.love-box:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    z-index: 10;
+    box-shadow: 12px 12px 0 var(--strawberry);
+}
+
+.id-photo-frame {
+    width: 100%;
+    aspect-ratio: 1.2/1;
+    background: #fdf2f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    border: 1px solid #fce4ec;
+    margin-bottom: 15px;
+}
+
+.id-text strong {
+    display: block;
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: #ad1457;
+    margin-bottom: 5px;
+}
+
+/* MODALS */
+.love-modal {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    display: none; justify-content: center; align-items: center;
+    padding: 20px; z-index: 10000;
+    background: rgba(255, 193, 227, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.ttpd-modal {
+    background: #fff;
+    border: 3px solid #f8bbd0;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    padding: 40px;
+    max-width: 500px; width: 95%;
+    max-height: 90vh;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    animation: modalSlide 0.4s ease;
+    text-align: center;
+}
+
+@keyframes modalSlide { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.manuscript-content {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    max-height: 350px;
+    overflow-y: auto;
+    text-align: left;
+    font-family: 'Gaegu', cursive;
+}
+
+.qa-textarea {
+    width: 100%; height: 250px;
+    background: #fdf2f8; 
+    border: 2px dashed #f8bbd0;
+    border-radius: 30px 10px 30px 10px/10px 30px 10px 30px;
+    font-family: 'Gaegu', cursive; font-size: 18px;
+    padding: 15px; color: #880e4f; resize: none; outline: none;
+}
+
+.modal-btn {
+    padding: 10px 25px;
+    background: var(--heart-pink); color: white;
+    border: none; border-radius: 50px;
+    font-family: 'Gaegu', cursive; font-weight: bold;
+    cursor: pointer; font-size: 18px;
+    transition: 0.3s;
+}
+
+.love-home {
+    display: block;
+    margin: 40px auto 20px;
+    padding: 20px 35px;
+    background: white;
+    color: var(--valentine-red);
+    font-family: 'Reenie Beanie';
+    font-size: 22px;
+    text-decoration: none;
+    border: 4px solid var(--heart-pink);
+    border-radius: 25px;
+    box-shadow: 8px 8px 0 var(--strawberry);
+    max-width: 300px;
+}
+
+.love-quote {
+    position: fixed; left: 50%; top: 40vh; transform: translateX(-50%);
+    font-family: 'Dancing Script', serif; font-size: 40px; color: #ad1457;
+    z-index: 10003; text-align: center; text-shadow: 2px 2px white;
+    width: 100%; pointer-events: none;
+}
+
+/* ===== MUSIC PLAYER ADD-ON ===== */
+.music-player-wrap {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+}
+
+#music-control { display: none; }
+
+.music-toggle-btn {
+    width: 55px; height: 55px;
+    background: var(--cream);
+    border: 4px solid var(--heart-pink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 24px;
+    box-shadow: 6px 6px 0 var(--strawberry);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.music-toggle-btn::before { content: '🔈'; }
+#music-control:checked + .music-toggle-btn::before { content: '🎵'; }
+
+#music-control:checked + .music-toggle-btn {
+    animation: musicPulse 2s infinite;
+    background: var(--rose-gold);
+}
+
+@keyframes musicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>secret love notes</h1>
+
+    <div class="notes-row">
+        <div class="love-box" onclick="openEnvelope()">
+            <div class="id-photo-frame">📜</div>
+            <div class="id-text">
+                <strong>The Manuscript</strong>
+                <p>Status: Archived Forever ♡</p>
+            </div>
+        </div>
+        
+        <div class="love-box" onclick="fireworkLove()">
+            <div class="id-photo-frame">✨</div>
+            <div class="id-text">
+                <strong>Hey, Click Me.</strong>
+                <p>Status: Active ♡</p>
+            </div>
+        </div>
+        
+        <div class="love-box" onclick="openQuestions()">
+            <div class="id-photo-frame">✍️</div>
+            <div class="id-text">
+                <strong>The Deposition</strong>
+                <p>Status: Pending (Wait for you)... ♡</p>
+            </div>
+        </div>
+    </div>
+    
+    <a href="index.html" class="love-home">🏠 Back to Home</a>
+</div>
+
+<div id="envelopeModal" class="love-modal">
+    <div class="ttpd-modal">
+        <h2 style="font-family: 'Dancing Script'; color: #ad1457; margin-bottom: 15px;">A Secret Letter ♡</h2>
+        <div class="manuscript-content">
+            My dearest love, Zahir,<br><br>
+            HAPPY VALENTINE my love. I know you are tengah busy right now handling event, that things and that, so it is okay I understand. I just wanted you to know that I create this all by myself using Brain + AI to actually got this all design. <br><br>
+            I enjoyed every moments we hadap from bad to good to super HAAHAHHA, and I truly mean it. I LOVE YOU SO MUCH, AWAK <br><br>
+            Your Love and Only, Hakim.
+        </div>
+        <button class="modal-btn" onclick="closeEnvelope()">Close Letter ♡</button>
+    </div>
+</div>
+
+<div id="qaModal" class="love-modal">
+    <div class="ttpd-modal">
+        <h2 style="font-family: 'Dancing Script'; color: #ad1457; margin-bottom: 15px;">Witness Statement ♡</h2>
+        <textarea id="questionText" class="qa-textarea" placeholder="Write your thoughts here..."></textarea>
+        <div style="display: flex; gap: 15px; justify-content: center; margin-top:15px;">
+            <button class="modal-btn" onclick="saveQuestion()">Save Record</button>
+            <button class="modal-btn" style="background: #fff; color: #f8bbd0; border: 1px solid #f8bbd0;" onclick="closeQuestions()">Discard</button>
+        </div>
+    </div>
+</div>
+
+<div class="music-player-wrap">
+    <input type="checkbox" id="music-control" onclick="toggleMusic()">
+    <label for="music-control" class="music-toggle-btn" title="Play Love Song"></label>
+    <audio id="love-song" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+let quoteIndex = 0;
+
+// Modal Controls
+function openEnvelope() { document.getElementById('envelopeModal').style.display = 'flex'; }
+function closeEnvelope() { document.getElementById('envelopeModal').style.display = 'none'; }
+function openQuestions() { document.getElementById('qaModal').style.display = 'flex'; }
+function closeQuestions() { document.getElementById('qaModal').style.display = 'none'; }
+
+// fireworkLove with Sequential Quotes
+function fireworkLove() {
+    const quotes = ['DO YOU LOVE ME?', 'RAWRRR!! IMMA EAT YOU UP', "HMM, IT'S OKAY I'M OKAY"];
+    const quote = quotes[quoteIndex];
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+
+    const loveQuote = document.createElement('div');
+    loveQuote.className = 'love-quote';
+    loveQuote.textContent = quote;
+    document.body.appendChild(loveQuote);
+    
+    setTimeout(() => {
+        loveQuote.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500 }).onfinish = () => loveQuote.remove();
+    }, 1500);
+}
+
+// Music Logic with Error Handling
+function toggleMusic() {
+    const song = document.getElementById('love-song');
+    const control = document.getElementById('music-control');
+    
+    if (control.checked) {
+        song.play().catch(error => {
+            console.error("Music playback failed:", error);
+            alert("Oops! I can't find 'song.mp3'. Make sure the music file is in the same folder!");
+            control.checked = false;
+        });
+    } else {
+        song.pause();
+    }
+}
+
+// Save Data
+function saveQuestion() {
+    const text = document.getElementById('questionText').value;
+    localStorage.setItem('loveQuestions', text);
+    alert('Your love record has been updated! ♡');
+    closeQuestions();
+}
+</script>
+</body>
+</html>

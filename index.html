@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏹 Cupid's Love Portal 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    /* --- SCRAPBOOK COQUETTE AESTHETIC --- */
+    :root {
+        --pink-soft: #fce4ec;
+        --pink-deep: #ad1457;
+        --pink-accent: #f8bbd0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        background-color: var(--pink-soft);
+        background-image: 
+            radial-gradient(#ffc1e3 1px, transparent 1px),
+            linear-gradient(rgba(255,255,255,0.5) 2px, transparent 2px),
+            linear-gradient(90deg, rgba(255,255,255,0.5) 2px, transparent 2px);
+        background-size: 20px 20px, 40px 40px, 40px 40px;
+        font-family: 'Gaegu', cursive;
+        color: var(--pink-deep);
+        min-height: 100vh;
+        overflow-x: hidden;
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="font-size:20px"><text y="20">🏹</text></svg>'), auto;
+    }
+
+    .container {
+        position: relative;
+        z-index: 10;
+        padding: 60px 20px;
+        text-align: center;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-family: 'Dancing Script', cursive;
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        color: var(--pink-deep);
+        text-shadow: 2px 2px white;
+        margin-bottom: 50px;
+        animation: title-float 3s ease-in-out infinite;
+    }
+
+    @keyframes title-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+
+    /* Floating Cupid Mascot */
+    .cupid-mascot {
+        font-size: 60px;
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        animation: float-cupid 4s ease-in-out infinite;
+        z-index: 100;
+        filter: drop-shadow(5px 5px 0px rgba(248, 187, 208, 0.5));
+    }
+
+    @keyframes float-cupid {
+        0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); }
+        50% { transform: translateY(-20px) rotate(5deg) scale(1.1); }
+    }
+
+    /* Button Styling (Scrapbook Style) */
+    .btn-wrapper {
+        position: relative;
+        transition: transform 0.3s ease;
+        animation: scrapbook-wiggle 6s ease-in-out infinite;
+    }
+
+    .btn-wrapper:nth-child(1) { animation-delay: 0s; }
+    .btn-wrapper:nth-child(2) { animation-delay: 1s; }
+    .btn-wrapper:nth-child(3) { animation-delay: 2s; }
+
+    @keyframes scrapbook-wiggle {
+        0%, 100% { transform: rotate(-1deg); }
+        50% { transform: rotate(1deg); }
+    }
+
+    .btn-wrapper:hover {
+        transform: scale(1.05) rotate(0deg) !important;
+        z-index: 20;
+        animation-play-state: paused;
+    }
+
+    .love-btn {
+        display: inline-block;
+        padding: 20px 45px;
+        background: white;
+        color: var(--pink-deep);
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1.5rem;
+        border: 2px dashed var(--pink-accent);
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.2s ease;
+    }
+
+    /* Washi Tape for Buttons */
+    .btn-wrapper::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(2deg);
+        width: 100px;
+        height: 25px;
+        background: rgba(248, 187, 208, 0.6);
+        z-index: 1;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .love-btn:hover {
+        background: var(--pink-accent);
+        color: white;
+        border-style: solid;
+        box-shadow: 0px 10px 20px rgba(173, 20, 87, 0.2);
+    }
+
+    .hint {
+        margin-top: 15px;
+        color: var(--pink-deep);
+        font-size: 1.1rem;
+        font-weight: bold;
+        opacity: 0.8;
+    }
+
+    /* Floating Elements */
+    .heart-float {
+        position: fixed;
+        bottom: -50px;
+        font-size: 25px;
+        animation: fly-up linear infinite;
+        z-index: 1;
+        opacity: 0.6;
+    }
+
+    .cupid-arrow {
+        position: fixed;
+        left: -100px;
+        font-size: 30px;
+        animation: shoot-across linear infinite;
+        z-index: 2;
+        opacity: 0.7;
+    }
+
+    .sparkle {
+        position: fixed;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle linear infinite;
+        z-index: 1;
+    }
+
+    @keyframes fly-up {
+        to { transform: translateY(-110vh) rotate(360deg); }
+    }
+
+    @keyframes shoot-across {
+        to { transform: translateX(110vw); }
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Fluffy Clouds */
+    .cloud-border {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: white;
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        opacity: 0.8;
+        z-index: 5;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="cupid-mascot" title="I'm watching over your love!">👼</div>
+
+<div class="heart-float" style="left:15%; animation-delay:0s;">💖</div>
+<div class="heart-float" style="left:35%; animation-delay:2s;">💕</div>
+<div class="heart-float" style="left:65%; animation-delay:4s;">💗</div>
+<div class="cupid-arrow" style="top:20%; animation-delay:1s;">💘➡️</div>
+
+<div class="container">
+  <h1>🏹 Cupid's Command Center 🏹</h1>
+  
+  <div style="max-width: 650px; margin: 0 auto; display: grid; gap: 50px;">
+    <div class="btn-wrapper">
+      <a href="countdown.html" class="love-btn">⏰ Valentine's Timer 🏹</a>
+      <div class="hint">Waiting for the big day! ✨</div>
+    </div>
+    
+    <div class="btn-wrapper">
+      <a href="gallery.html" class="love-btn">📸 Cupid Memories 💖</a>
+      <div class="hint">Sweet snapshots of us 💕</div>
+    </div>
+    
+    <div class="btn-wrapper">
+      <a href="notes.html" class="love-btn">💌 Secret Love Letters ☁️</a>
+      <div class="hint">Read what's in my heart... 💘</div>
+    </div>
+  </div>
+</div>
+
+<div class="cloud-border"></div>
+
+<script>
+function createMagic() {
+  // Random Hearts
+  if (Math.random() > 0.4) {
+    const heart = document.createElement('div');
+    heart.className = 'heart-float';
+    heart.style.left = Math.random() * 95 + '%';
+    heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+    heart.innerHTML = ['💖','💕','💗','💘','💝','🌸','🎀'][Math.floor(Math.random()*7)];
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }
+  
+  // Random Arrows
+  if (Math.random() > 0.8) {
+    const arrow = document.createElement('div');
+    arrow.className = 'cupid-arrow';
+    arrow.style.top = Math.random() * 80 + '%';
+    arrow.style.animationDuration = (Math.random() * 1.5 + 3) + 's';
+    arrow.innerHTML = '🏹';
+    document.body.appendChild(arrow);
+    setTimeout(() => arrow.remove(), 4000);
+  }
+  
+  // Floating Sparkles
+  if (Math.random() > 0.6) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    const size = (Math.random() * 8 + 4) + 'px';
+    sparkle.style.width = size;
+    sparkle.style.height = size;
+    sparkle.style.left = Math.random() * 100 + '%';
+    sparkle.style.top = Math.random() * 100 + '%';
+    sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 4000);
+  }
+}
+
+setInterval(createMagic, 800);
+</script>
+</body>
+</html>

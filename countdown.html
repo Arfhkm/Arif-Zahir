@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⏰ Our Love Timeline 🏹</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --pink-soft: #fce4ec;
+        --pink-deep: #ad1457;
+        --pink-accent: #f8bbd0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        background-color: var(--pink-soft);
+        background-image: 
+            radial-gradient(#ffc1e3 1px, transparent 1px),
+            linear-gradient(rgba(255,255,255,0.5) 2px, transparent 2px),
+            linear-gradient(90deg, rgba(255,255,255,0.5) 2px, transparent 2px);
+        background-size: 20px 20px, 40px 40px, 40px 40px;
+        font-family: 'Gaegu', cursive;
+        color: var(--pink-deep);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+    }
+
+    .container { max-width: 900px; width: 100%; text-align: center; z-index: 10; }
+
+    h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 8vw, 4rem); text-shadow: 2px 2px white; margin-bottom: 20px; }
+
+    .timer-section {
+        background: white;
+        margin: 25px 0;
+        padding: 30px 20px;
+        border: 2px dashed var(--pink-accent);
+        box-shadow: 8px 8px 0px var(--pink-accent);
+        position: relative;
+        border-radius: 5px;
+    }
+
+    .timer-section::before {
+        content: '🎀';
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 30px;
+    }
+
+    .countdown-grid { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 15px 0; }
+
+    .unit-box {
+        background: var(--pink-soft);
+        padding: 12px;
+        min-width: 80px;
+        border-radius: 10px;
+        border: 1px solid white;
+    }
+
+    .num { display: block; font-size: 2.2rem; font-weight: bold; line-height: 1; }
+    .lab { font-size: 0.75rem; text-transform: uppercase; font-weight: bold; }
+
+    .special-status {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #e91e63;
+        font-style: italic;
+    }
+
+    .love-home {
+        margin-top: 30px;
+        display: inline-block;
+        padding: 12px 35px;
+        background: white;
+        border: 2px dashed var(--pink-accent);
+        color: var(--pink-deep);
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 1.2rem;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>our love timeline</h1>
+    
+    <div class="timer-section">
+        <h2 id="vday-title" style="font-family: 'Dancing Script'; font-size: 2.3rem;">Valentine's Countdown 🏹</h2>
+        
+        <div id="vday-countdown" class="countdown-grid">
+            <div class="unit-box"><span class="num" id="vd-d">00</span><span class="lab">Days</span></div>
+            <div class="unit-box"><span class="num" id="vd-h">00</span><span class="lab">Hrs</span></div>
+            <div class="unit-box"><span class="num" id="vd-m">00</span><span class="lab">Mins</span></div>
+            <div class="unit-box"><span class="num" id="vd-s">00</span><span class="lab">Secs</span></div>
+        </div>
+
+        <div id="vday-status" class="special-status">Calculating cupid's arrival...</div>
+    </div>
+
+    <div class="timer-section">
+        <h2 style="font-family: 'Dancing Script'; font-size: 2.3rem;">3 Months Together 🌸</h2>
+        <div id="three-month-msg" class="special-status" style="margin-top:10px; display:none;">Celebrating 3 months of us! 🤍</div>
+        <div id="three-month-countdown" class="countdown-grid">
+            <div class="unit-box"><span class="num" id="3m-d">00</span><span class="lab">Days</span></div>
+            <div class="unit-box"><span class="num" id="3m-h">00</span><span class="lab">Hrs</span></div>
+            <div class="unit-box"><span class="num" id="3m-m">00</span><span class="lab">Mins</span></div>
+            <div class="unit-box"><span class="num" id="3m-s">00</span><span class="lab">Secs</span></div>
+        </div>
+        <p style="opacity: 0.7;">February 5, 2026</p>
+    </div>
+
+    <div class="timer-section">
+        <h2 style="font-family: 'Dancing Script'; font-size: 2.3rem;">1 Year Anniversary 🧸</h2>
+        <div class="countdown-grid">
+            <div class="unit-box"><span class="num" id="an-d">00</span><span class="lab">Days</span></div>
+            <div class="unit-box"><span class="num" id="an-h">00</span><span class="lab">Hrs</span></div>
+            <div class="unit-box"><span class="num" id="an-m">00</span><span class="lab">Mins</span></div>
+            <div class="unit-box"><span class="num" id="an-s">00</span><span class="lab">Secs</span></div>
+        </div>
+        <p style="opacity: 0.7;">November 5, 2026</p>
+    </div>
+
+    <a href="index.html" class="love-home">🏠 Return to Portal</a>
+</div>
+
+<script>
+    const valentineStart = new Date("February 14, 2026 00:00:00").getTime();
+    const valentineEnd = new Date("February 15, 2026 00:00:00").getTime();
+    const threeMonthDate = new Date("February 5, 2026 00:00:00").getTime();
+    const anniversaryDate = new Date("November 5, 2026 00:00:00").getTime();
+
+    function update() {
+        const now = new Date().getTime();
+
+        // VALENTINE LOGIC
+        const vStartDist = valentineStart - now;
+        const vEndDist = valentineEnd - now;
+
+        if (vStartDist > 0) {
+            // PHASE 1: Countdown TO Valentine's
+            document.getElementById("vday-title").innerText = "Countdown to Valentine's 🏹";
+            document.getElementById("vday-status").innerText = "Almost here! Valentine's Eve magic... ✨";
+            renderTime(vStartDist, "vd");
+        } else if (vStartDist <= 0 && vEndDist > 0) {
+            // PHASE 2: Countdown BEFORE Valentine's Ends
+            document.getElementById("vday-title").innerText = "Happy Valentine's Day! 🎀";
+            document.getElementById("vday-status").innerText = "Time left to celebrate our love today:";
+            renderTime(vEndDist, "vd");
+        } else {
+            // PHASE 3: Finished
+            document.getElementById("vday-title").innerText = "Valentine's Day 2026 ♡";
+            document.getElementById("vday-status").innerText = "Hope your day was filled with love! 🌸";
+            document.getElementById("vday-countdown").style.opacity = "0.5";
+        }
+
+        // 3 MONTHS LOGIC
+        const m3Dist = threeMonthDate - now;
+        if (m3Dist > 0) {
+            renderTime(m3Dist, "3m");
+        } else {
+            document.getElementById("three-month-countdown").style.display = "none";
+            document.getElementById("three-month-msg").style.display = "block";
+        }
+
+        // 1 YEAR LOGIC
+        const annDist = anniversaryDate - now;
+        renderTime(annDist, "an");
+    }
+
+    function renderTime(dist, prefix) {
+        const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+        const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((dist % (1000 * 60)) / 1000);
+
+        const dEl = document.getElementById(prefix + "-d");
+        const hEl = document.getElementById(prefix + "-h");
+        const mEl = document.getElementById(prefix + "-m");
+        const sEl = document.getElementById(prefix + "-s");
+
+        if(dEl) dEl.innerText = d;
+        if(hEl) hEl.innerText = h < 10 ? "0"+h : h;
+        if(mEl) mEl.innerText = m < 10 ? "0"+m : m;
+        if(sEl) sEl.innerText = s < 10 ? "0"+s : s;
+    }
+
+    setInterval(update, 1000);
+    update();
+</script>
+
+</body>
+</html>
